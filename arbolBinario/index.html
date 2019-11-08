@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Arbol Binario</title>
+</head>
+<body>
+    <div id="textoPrincipal">
+        <h1>Inventario de Articulos</h1>
+    </div>
+    <div>
+        <h2>Historial de Inventario</h2>
+        <div id="divIn"></div>
+    </div>
+    <div>
+        <h2>Inventario al contrario</h2>
+        <div id="reverseTextInventory"></div>
+        <button type="button" id="btnTextReverse">Inventario Invertido</button>
+    </div>
+    <br>
+    <div>
+        <h2>Buscar Producto</h2>
+        <input id="search" type="text">
+        <br>
+        <br>
+        <button id="btnSearch" type="button">Buscar</button>
+        <br>
+        <div id="resultSearch"></div> 
+    </div>
+    <div>
+        <h2>Eliminar Producto</h2>
+        <input id="delete" type="text">
+        <br>
+        <br>
+        <button id="btnDelete" type="button">Eliminar</button>
+        <br>  
+    </div>
+    <h2>Registro de Producto Nuevo</h2>
+    <form>
+        <label>Codigo del Producto </label>
+        <input id="code" type="number" >
+        <br>
+        <label>Nombre Producto </label>
+        <input id="name" type="text/number">
+        <br>
+        <label>Precio</label>
+        <input id="price" type="number">
+        <br>
+        <button id="btnAdd" type="button">Agregar</button>
+        <br>
+    </form>
+</body>
+<script src="./main.js" type="module"></script>
+</html>
