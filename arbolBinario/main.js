@@ -1,6 +1,8 @@
 import Article from "./article.js";
 import Inventory from "./inventoryTree.js";
 
+let divIn = document.querySelector("#divIn");
+
 class Main{
     constructor(){
         this._initTable = new Inventory()
@@ -14,12 +16,13 @@ class Main{
         return objeto;
     }
     sendInfoToSave(){
+        divIn.innerHTML= "";
         let newArticle = new Article(this.objetoInfo());
         this._initTable.addObject(newArticle);
-        console.log(newArticle);
+        this.printInfoInOrder();
+        
     }
     printInfoInOrder(){
-        let divIn = document.querySelector("#divIn");
         this._initTable.recordInventoryIn();
         divIn.innerHTML = this._initTable.textIn;
     }
@@ -33,13 +36,14 @@ class Main{
         this._initTable.recordInventoryPost();
         divPost.innerHTML = this._initTable.textPost;
     }
-    deleteObject(){
-        let codeDelete = document.querySelector("#codeDelete").value;
-        this._initTable.quitFromInventory(codeDelete);
-    }
-    search(){
+    searchObject(){
+        let divResult = document.querySelector("#divSearch");
         let codeSearch = document.querySelector("#codeSearch").value;
-        this._initTable.searchObject(codeSearch);
+        let consult = this._initTable.consultCodeSearch(codeSearch);
+        console.log(consult);
+        if(consult != null){
+            divResult.innerHTML = consult.toString();
+        }
     }
 }
 let m = new Main();
@@ -47,17 +51,13 @@ let m = new Main();
 let btnAdd = document.querySelector("#btnAdd").addEventListener("click", ()=>{
     m.sendInfoToSave();
     console.log(m);
-    m.printInfoInOrder();
 })
-/*let btnPrintPre = document.querySelector("#btnPrintPre").addEventListener("click", () =>{
+let btnPrintPre = document.querySelector("#btnOrderPre").addEventListener("click", () =>{
     m.printInfoPreOrder();
 })
-let btnPrintPost = document.querySelector("#btnPrintPost").addEventListener("click", () =>{
+let btnPrintPost = document.querySelector("#btnOrderPost").addEventListener("click", () =>{
     m.printInfoPostOrder();
 })
-let btnDelete = document.querySelector("#btnDelete").addEventListener("click", ()=>{
-    m.deleteObject();
-})
-let btnSearch = document.querySelector("#btnSearch").addEventListener("click", ()=>{
+let btnSearch = document.querySelector("#btnSearch").addEventListener("click",()=>{
     m.searchObject();
-})*/
+})
