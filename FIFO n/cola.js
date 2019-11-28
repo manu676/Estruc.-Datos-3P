@@ -1,11 +1,57 @@
-export default class Colas{
-    constructor(){
-        this._start = null;
-        this._textNoProcess = "";
-        this._textProcess = "";
+import FIFO from './FIFO.js';
+
+export default class Cola {
+    constructor() {
+        this._FIFO = new FIFO();
+        this._tiempoLibre = 0;
+        this._procesosEsperando = 0;
+        this._procesosTotales = 0;
+        this._procesosTerminados = 0;
     }
-    addCola(number,timeProcess){
-        let nuevoTrabaho = new Work(number,timeProcess);
+
+    get tiempoLibre(){
+        return this._tiempoLibre;
     }
-    
+    set tiempoLibre(libre){
+        this._tiempoLibre = libre
+    }
+
+    get procesosEsperando(){
+        return this._procesosEsperando;
+    }
+
+    get procesosTotales(){
+        return this._procesosTotales;
+    }
+
+    get procesosTerminados(){
+        return this._procesosTerminados;
+    }
+
+    add(newProceso) {
+        this._FIFO.push(newProceso);
+    }
+
+    nextProceso() {
+        //Do process
+        if (this._FIFO.peek() != null) {
+            this._FIFO.peek().tiempo--;
+            if (this._FIFO.peek().tiempo === 0){
+                this._FIFO.pop();
+                this._procesosTerminados++;
+            }
+        } else
+            this._tiempoLibre++;
+        //Update process hoping
+        this._procesosEsperando = this._FIFO.size;
+
+        //Are there more process hoping than last time?
+        if(this._FIFO.size > this._procesosTotales){
+            this._procesosTotales = this._FIFO.size;
+        }
+    }
+
+    procesosReporte() {
+        return this._FIFO.print();
+    }
 }

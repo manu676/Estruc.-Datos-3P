@@ -1,26 +1,14 @@
-export default class Random{
-    constructor(){
+export default class Random {
+    constructor(lados) {
+        this._lados = lados;
     }
-    numerosAleatorios(){
-        let numero = Math.ceil(Math.random()*100);
-        return numero;
+    set lados(lados) {
+        this._lados = lados;
     }
-    /*numerosAleatorios(){
-        let number = 0;
-        for(let i = 0; i<300; i++){
-            number = Math.ceil(Math.random()*100);
-            //console.log(number);
-            if(number >=40){
-                this._noProcess++;
-            }
-            else{
-                this._withProcess++;
-            }
-        }
-    }*/
+    get lados(){
+        return this._lados;
+    }
+    aleatorio() {
+        return Math.trunc(Math.random() * this._lados) + 1;
+    }
 }
-//let m = new Random();
-//m.numerosAleatorios();
-//console.log(m);
-/*console.log(m.noProcess);
-console.log(m.withProcess);*/
