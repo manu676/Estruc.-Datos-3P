@@ -33,7 +33,6 @@ export default class Cola {
     }
 
     nextProceso() {
-        //Do process
         if (this._FIFO.peek() != null) {
             this._FIFO.peek().tiempo--;
             if (this._FIFO.peek().tiempo === 0){
@@ -42,10 +41,8 @@ export default class Cola {
             }
         } else
             this._tiempoLibre++;
-        //Update process hoping
         this._procesosEsperando = this._FIFO.size;
 
-        //Are there more process hoping than last time?
         if(this._FIFO.size > this._procesosTotales){
             this._procesosTotales = this._FIFO.size;
         }
