@@ -18,7 +18,7 @@ export default class Cola {
     }
     get iteraciones(){
         let fifo = this._FIFO.TiempoRequerido()
-        this._iteraciones = fifo;
+        return this._iteraciones = fifo;
     }
     set iteraciones(iteraciones){
         this._iteraciones = iteraciones
@@ -46,9 +46,9 @@ export default class Cola {
     }
 
     nextProceso() {
-        if (this._FIFO.inTurn != null) {
-            this._FIFO.inTurn.timeRequired--;
-            if (this._FIFO.inTurn.timeRequired === 0) {
+        if (this._FIFO.tSiguiente != null) {
+            this._FIFO.tSiguiente.tiempo--;
+            if (this._FIFO.tSiguiente.tiempo === 0) {
                 this._FIFO.delete();
                 this._procesosTerminados++;
             }

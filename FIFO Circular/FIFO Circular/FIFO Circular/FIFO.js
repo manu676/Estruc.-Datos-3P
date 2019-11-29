@@ -9,11 +9,9 @@ export default class CircularListFIFO {
         return this._contador;
     }
 
-    get inTurn() {
+    get tSiguiente() {
         return this._turnoSiguiente;
     }
-
-
     nextTurno() {
         if (this._turnoSiguiente != null) {
             this._turnoSiguiente = this._turnoSiguiente.next;
@@ -66,10 +64,10 @@ export default class CircularListFIFO {
         let tiempoTotal = 0;
         if (this._start != null) {
             let aux = this._start;
-            tiempoTotal = aux.timeRequired;
+            tiempoTotal = aux.tiempo;
             aux = aux.next;
             while (aux != this._start) {
-                tiempoTotal += aux.timeRequired;
+                tiempoTotal += aux.tiempo;
                 aux = aux.next;
             }
         }
