@@ -70,8 +70,6 @@ export default class Operacion {
                 this._definirRaiz2(this._start);
                 return;
             }
-            console.log(data);
-            //if(this._tail != data){
             if (this._raiz != null) {
                 this._raiz = data;
                 this._raiz.sonLeft = data.previous;
@@ -89,7 +87,9 @@ export default class Operacion {
                 this._definirRaiz(data.next);
             }
         }else{
-            this._definirRaiz2(this._start);
+            if(this._start.next != null){
+                this._definirRaiz2(this._start);
+            }
         }
     }
     _definirRaiz2(data) {
@@ -138,7 +138,7 @@ export default class Operacion {
         if (start.sonLeft != null) {
             temp += this._orderIn(start.sonLeft);
         }
-        temp += start.toString() + "<br>";
+        temp += start.toString();
         if (start.sonRight != null) {
             temp += this._orderIn(start.sonRight);
         }
@@ -159,7 +159,7 @@ export default class Operacion {
     }
     _orderPre(start) {
         let temp = "";
-        temp += start.toString() + "<br>";
+        temp += start.toString();
         if (start.sonLeft != null) {
             temp += this._orderPre(start.sonLeft);
         }
@@ -189,7 +189,7 @@ export default class Operacion {
         if (start.sonRight != null) {
             temp += this._orderPost(start.sonRight);
         }
-        temp += start.toString() + "<br>";
+        temp += start.toString();
         return temp;
     }
 

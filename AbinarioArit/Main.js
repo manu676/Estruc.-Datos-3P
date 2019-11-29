@@ -1,9 +1,13 @@
 import Dato from "./Dato.js";
 import Operacion from "./Operacion.js";
+import Cola from "./Cola.js";
+import Stack from "./Pilas.js";
 
 class Main{
     constructor(){
         this._operacion = new Operacion();
+        this._cola = new Cola();
+        this._pila = new Stack();
     }
     //Separa los caracteres para hacer lista doble
     separarCaracteres(){
@@ -13,9 +17,8 @@ class Main{
         }
         //Hace el arbol mediante la lista ya hecha 
         this._operacion.armarArbol();
-
         //Imprime el orden normal 
-        this.printInfoInOrder();
+        this.printInfoInOrder();        
     }
     printInfoInOrder(){
         this._operacion.recordInventoryIn();
@@ -23,13 +26,25 @@ class Main{
     }
     printInfoPreOrder(){
         let divPre = document.querySelector("#divPre");
-        this._operacion.recordInventoryPre();
+        this._operacion.recordInventoryPre();  
+        let cadena = this._operacion.textPre;
+        for(let i = 0; i < cadena.length; i++){
+            this._pila.push(new Dato(cadena.charAt(i)));
+        }
+        this._pila.pop();      
         divPre.innerHTML = this._operacion.textPre;
     }
     printInfoPostOrder(){
         let divPost = document.querySelector("#divPost");
         this._operacion.recordInventoryPost();
-        divPost.innerHTML = this._operacion.textPost;
+        
+        let cadena = this._operacion.textPost;
+        for(let i = 0; i < cadena.length; i++){
+            this._cola.enqueue(new Dato(cadena.charAt(i)));
+        }
+        this._cola.dequeue();
+        console.log(this._cola.resultado);        
+        divPost.innerHTML = this._operacion.textPost + " El resultado total es de = " + this._cola.resultado;
     }
 }
 let m = new Main();
