@@ -1,0 +1,66 @@
+///Archivo Cola 
+
+export default class Cola{
+    constructor(){
+        this._lista = null;
+        this._ProcesoAtendido = "";
+    }
+        set & get {
+            this._lista
+        }
+        set & get { 
+            this._ProcesoAtendido;
+        }
+    //Metodo de añadir a la cola
+    addObjeto(data){
+        ...
+        //El contenido que tiene para agregar el objeto a la lista
+    }
+    //Metodo de extraer de la cola 
+    extraerData(){
+        this._dequeue(this._lista);
+    }
+    //Metodo de sacar el ultimo
+    dequeue(data){
+        if (data != null){
+            if(data.prioridad = 1){
+                this._ProcesoAtendido = data;
+                thsi._quitFromList(data);
+
+            }else{
+                this._ProcesoAtendido = data;
+                thsi._quitFromList(data);
+            }
+        }
+    }
+    ///Eliminar de la lista
+    this._quitFromList(data){
+        data.preview.next = data.next;
+    }
+}
+
+////Archivo Main
+
+import class Colas from "./cola"
+
+class Main{
+    constructor(){
+        this._cola = new Cola();
+    }
+    _objetoDato(){
+        let dato{
+            ///contenido del objeto (dato,prioridad(1 o 0))
+        }
+    }
+    enviarObjeto(){
+        ///Contenido para agregar a la lista 
+    }
+    obtenerDatoAtendido(){
+        let divResultado = document.querySelector("#")
+        divResultado.innerHTML = this._cola.ProcesoAtendido;
+    }
+}
+let btnAtender.document.querySelector("#").addEventListener("click", ()=>{
+    this.obtenerDatoAtendido();
+})
+
