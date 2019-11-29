@@ -23,13 +23,13 @@ export default class Cola{
     //Metodo de sacar el ultimo
     dequeue(data){
         if (data != null){
-            if(data.prioridad = 1){
+            if(data.prioridad === 1){
                 this._ProcesoAtendido = data;
-                thsi._quitFromList(data);
-
+                this._quitFromList(data);
+		return;
             }else{
                 this._ProcesoAtendido = data;
-                thsi._quitFromList(data);
+                this._quitFromList(data);
             }
         }
     }
@@ -60,6 +60,7 @@ class Main{
         divResultado.innerHTML = this._cola.ProcesoAtendido;
     }
 }
+///Boton para obtener el dato
 let btnAtender.document.querySelector("#").addEventListener("click", ()=>{
     this.obtenerDatoAtendido();
 })
