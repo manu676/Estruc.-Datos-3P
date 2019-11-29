@@ -66,35 +66,36 @@ export default class Operacion {
                 //En caso de que sea un numero, entonces el data ahora va hacer su siguiente
                 data = data.next;
             }
-            if(data === null){
+            if (data === null) {
                 this._definirRaiz2(this._start);
                 return;
             }
-            //console.log(data);
-            if(this._tail != data){
-                if (this._raiz != null) {
-                    this._raiz = data;
-                    this._raiz.sonLeft = data.previous;
-                    this._raiz.sonRight = data.next;
-                    this.quitFromInventory(data.previous.dato);
-                    this.quitFromInventory(data.next.dato);
-                    this._definirRaiz(data.next);
-                } else {
-                    ///Aqui es cuanto la raiz es null 
-                    this._raiz = data;
-                    this._raiz.sonLeft = data.previous;
-                    this._raiz.sonRight = data.next;
-                    this.quitFromInventory(data.previous.dato);
-                    this.quitFromInventory(data.next.dato);
-                    this._definirRaiz(data.next);
-                }
+            console.log(data);
+            //if(this._tail != data){
+            if (this._raiz != null) {
+                this._raiz = data;
+                this._raiz.sonLeft = data.previous;
+                this._raiz.sonRight = data.next;
+                this.quitFromInventory(data.previous.dato);
+                this.quitFromInventory(data.next.dato);
+                this._definirRaiz(data.next);
+            }else {
+                ///Aqui es cuanto la raiz es null 
+                this._raiz = data;
+                this._raiz.sonLeft = data.previous;
+                this._raiz.sonRight = data.next;
+                this.quitFromInventory(data.previous.dato);
+                this.quitFromInventory(data.next.dato);
+                this._definirRaiz(data.next);
             }
+        }else{
+            this._definirRaiz2(this._start);
         }
     }
     _definirRaiz2(data) {
         if (data != null) {
             //Aqui data es un dato con sus atributos 
-            while (data != "+" && data != "-"  && data != null) {
+            while (data != "+" && data != "-" && data != null) {
                 //while(data < 9){
                 //En caso de que sea un numero, entonces el data ahora va hacer su siguiente
                 data = data.next;
@@ -153,7 +154,7 @@ export default class Operacion {
         if (this._start == null) {
             this._textPre = "No hay nada";
         } else {
-            this._textPre += this._orderPre(this._raiz);
+            this._textPre += this._orderPre(this._start);
         }
     }
     _orderPre(start) {
@@ -174,10 +175,10 @@ export default class Operacion {
     }
     _orderPostText() {
         this._textPost = "";
-        if (this._raiz == null) {
+        if (this._start == null) {
             this._textPost = "No hay nada";
         } else {
-            this._textPost += this._orderPost(this._raiz);
+            this._textPost += this._orderPost(this._start);
         }
     }
     _orderPost(start) {
