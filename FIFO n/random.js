@@ -9,6 +9,6 @@ export default class Random {
         return this._lados;
     }
     aleatorio() {
-        return Math.trunc(Math.random() * this._lados) + 1;
+        return Math.ceil(Math.random() * this._lados);
     }
 }

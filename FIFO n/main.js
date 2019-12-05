@@ -12,15 +12,15 @@ document.querySelector('#btnStart').addEventListener('click', () => {
             P1.nextProceso();
             console.log("Reporte : " + P1.procesosReporte());
         }else{
-            P1.tiempoLibre++;
+            var free = P1.tiempoLibre++;
         }
         
     }
-    let total = P1.tiempoLibre + P1.procesosEsperando + P1.procesosTerminados;
+    let total = P1.tiempoLibre + P1.procesosTotales + P1.procesosTerminados;
     console.log("Total de iteraciones " + total);
-    console.log("Sin trabajo: " + P1.tiempoLibre);
-    console.log("Procesos que existe trabajo " + P1.procesosEsperando);
-    console.log("Procesos pendiente " + P1.procesosTotales);
     console.log("Procesos completados al 100% " + P1.procesosTerminados);
+    console.log("Sin trabajo: " + free);
+    console.log("Procesos pendiente " + P1.procesosTotales);
+    
     
 });

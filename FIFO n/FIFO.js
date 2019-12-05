@@ -8,10 +8,10 @@ export default class Fifo {
     }
     push(node) {
         if (this._start != null) {
-            let temporal = this._start;
-            while (temporal.next != null)
-                temporal = temporal.next;
-            temporal.next = node;
+            let objeto = this._start;
+            while (objeto.next != null)
+                objeto = objeto.next;
+            objeto.next = node;
         } else
             this._start = node;
         this._contador++;
