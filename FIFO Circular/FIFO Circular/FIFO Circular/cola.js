@@ -1,8 +1,8 @@
-import FIFO from './FIFO.js';
+import CircularListFIFO from './FIFO.js';
 
 export default class Cola {
     constructor() {
-        this._FIFO = new FIFO();
+        this._FIFO = new CircularListFIFO();
         this._iteraciones = 0;
         this._tiempoLibre = 0;
         this._procesosEsperando = 0;
@@ -17,8 +17,7 @@ export default class Cola {
         this._tiempoLibre = libre
     }
     get iteraciones(){
-        let fifo = this._FIFO.TiempoRequerido()
-        return this._iteraciones = fifo;
+        return this._iteraciones = this._FIFO.TiempoRequerido();
     }
     set iteraciones(iteraciones){
         this._iteraciones = iteraciones
@@ -54,9 +53,7 @@ export default class Cola {
             }
             else
                 this._FIFO.nextTurno();
-        } else
-            this._tiempoLibre++;
-
+        }
         if (this._procesosTotales < this._FIFO.contador)
             this._procesosTotales = this._FIFO.contador;
         this._procesosEsperando = this._FIFO.contador;

@@ -4,26 +4,36 @@ export default class CircularListFIFO {
         this._turnoSiguiente = null;
         this._contador = 0;
     }
-
     get contador() {
         return this._contador;
     }
-
     get tSiguiente() {
         return this._turnoSiguiente;
+    }
+    tiempo(){
+        let tiempoTotal = 0;
+        if (this._start != null) {
+            let objeto = this._start;
+            tiempoTotal = objeto.tiempo;
+            objeto = objeto.next;
+            while (objeto != this._start) {
+                tiempoTotal += objeto.tiempo;
+                objeto = objeto.next;
+            }
+        }
+        return tiempoTotal;
     }
     nextTurno() {
         if (this._turnoSiguiente != null) {
             this._turnoSiguiente = this._turnoSiguiente.next;
         }
     }
-
     push(data) {
         if (this._start != null) {
-            let aux = this._start;
-            while (aux.next != this._start)
-                aux = aux.next;
-                aux.next = data;
+            let tempo = this._start;
+            while (tempo.next != this._start)
+                tempo = tempo.next;
+                tempo.next = data;
                 data.next = this._start;
         } else {
             this._start = data;
@@ -33,14 +43,14 @@ export default class CircularListFIFO {
 
         this._contador++;
     }
-
     delete() {
         if (this._turnoSiguiente != this._start) {
-            let aux = this._start;
-            while (aux.next != this._turnoSiguiente)
-                aux = aux.next
-            aux.next = aux.next.next;
-            this._turnoSiguiente = aux.next.next;
+            let objeto = this._start;
+            while (objeto.next != this._turnoSiguiente){
+                objeto = objeto.next
+            }
+            this._start = objeto.next;
+            this._turnoSiguiente = objeto.next.next;
         } else
             this._start = null;
 
@@ -49,28 +59,14 @@ export default class CircularListFIFO {
     recordTurns () {
         let string = "";
         if (this._start != null) {
-            let aux = this._start;
-            string = aux.toString();
-            aux = aux.next;
-            while (aux != this._start) {
-                string = string + "\n" + aux.toString();
-                aux = aux.next;
+            let objeto = this._start;
+            string = objeto.toString();
+            objeto = objeto.next;
+            while (objeto != this._start) {
+                string = string + "\n" + objeto.toString();
+                objeto = objeto.next;
             }
         }
         return string;
-    }
-
-    tiempo(){
-        let tiempoTotal = 0;
-        if (this._start != null) {
-            let aux = this._start;
-            tiempoTotal = aux.tiempo;
-            aux = aux.next;
-            while (aux != this._start) {
-                tiempoTotal += aux.tiempo;
-                aux = aux.next;
-            }
-        }
-        return tiempoTotal;
     }
 }
