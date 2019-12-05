@@ -116,7 +116,6 @@ export default class Operacion {
                 this.quitFromInventory(data.next);
                 this._definirRaiz2(data.next);
             }
-            //console.log("Final ?" + this._start);
         }
     }
 
@@ -207,7 +206,6 @@ export default class Operacion {
             } else {
                 let objeto = data;
                 if (objeto === this._tail) {
-                    //console.log(objeto);
                     if (objeto.previous == this._start) {
                         this._tail = objeto.previous;
                         this._start.next = null;

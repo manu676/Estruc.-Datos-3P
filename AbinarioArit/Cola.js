@@ -105,11 +105,9 @@ export default class Cola{
 
     _find(code) {
         let objeto = this._nextData(code, this._inicial);
-        //console.log(objeto);
         if (objeto == null) {
             return "Error";
         } else if (objeto === this._tail) {
-            //console.log(objeto);
             if (objeto.previous == this._inicial) {
                 this._tail = objeto.previous;
                 this._inicial.next = null;

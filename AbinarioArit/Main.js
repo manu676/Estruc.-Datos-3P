@@ -15,9 +15,7 @@ class Main{
         for(let i = 0; i < cadena.length; i++){
             this._operacion.addObjeto(new Dato(cadena.charAt(i)));
         }
-        //Hace el arbol mediante la lista ya hecha 
         this._operacion.armarArbol();
-        //Imprime el orden normal 
         this.printInfoInOrder();        
     }
     printInfoInOrder(){
@@ -31,19 +29,17 @@ class Main{
         for(let i = 0; i < cadena.length; i++){
             this._pila.push(new Dato(cadena.charAt(i)));
         }
-        this._pila.pop();      
-        divPre.innerHTML = this._operacion.textPre;
+        this._pila.pop();   
+        divPre.innerHTML = this._operacion.textPre +  " El resultado total es de = " + this._pila.resultado;
     }
     printInfoPostOrder(){
         let divPost = document.querySelector("#divPost");
         this._operacion.recordInventoryPost();
-        
         let cadena = this._operacion.textPost;
         for(let i = 0; i < cadena.length; i++){
             this._cola.enqueue(new Dato(cadena.charAt(i)));
         }
-        this._cola.dequeue();
-        console.log(this._cola.resultado);        
+        this._cola.dequeue();     
         divPost.innerHTML = this._operacion.textPost + " El resultado total es de = " + this._cola.resultado;
     }
 }
