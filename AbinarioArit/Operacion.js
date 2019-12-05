@@ -74,16 +74,16 @@ export default class Operacion {
                 this._raiz = data;
                 this._raiz.sonLeft = data.previous;
                 this._raiz.sonRight = data.next;
-                this.quitFromInventory(data.previous.dato);
-                this.quitFromInventory(data.next.dato);
+                this.quitFromInventory(data.previous);
+                this.quitFromInventory(data.next);
                 this._definirRaiz(data.next);
             }else {
                 ///Aqui es cuanto la raiz es null 
                 this._raiz = data;
                 this._raiz.sonLeft = data.previous;
                 this._raiz.sonRight = data.next;
-                this.quitFromInventory(data.previous.dato);
-                this.quitFromInventory(data.next.dato);
+                this.quitFromInventory(data.previous);
+                this.quitFromInventory(data.next);
                 this._definirRaiz(data.next);
             }
         }else{
@@ -104,16 +104,16 @@ export default class Operacion {
                 this._raiz = data;
                 this._raiz.sonLeft = data.previous;
                 this._raiz.sonRight = data.next;
-                this.quitFromInventory(data.previous.dato);
-                this.quitFromInventory(data.next.dato);
+                this.quitFromInventory(data.previous);
+                this.quitFromInventory(data.next);
                 this._definirRaiz2(data.next);
             } else {
                 ///Aqui es cuanto la raiz es null 
                 this._raiz = data;
                 this._raiz.sonLeft = data.previous;
                 this._raiz.sonRight = data.next;
-                this.quitFromInventory(data.previous.dato);
-                this.quitFromInventory(data.next.dato);
+                this.quitFromInventory(data.previous);
+                this.quitFromInventory(data.next);
                 this._definirRaiz2(data.next);
             }
             //console.log("Final ?" + this._start);
@@ -192,9 +192,7 @@ export default class Operacion {
         temp += start.toString();
         return temp;
     }
-
     quitFromInventory(data) {
-        //console.log(data);
         if (data == null) {
             return console.log("No existe ese producto con ese codigo");
         } else {
@@ -207,38 +205,22 @@ export default class Operacion {
                     this._tail = null;
                 }
             } else {
-                this._find(data);
+                let objeto = data;
+                if (objeto === this._tail) {
+                    //console.log(objeto);
+                    if (objeto.previous == this._start) {
+                        this._tail = objeto.previous;
+                        this._start.next = null;
+                    } else {
+                        this._tail = objeto.previous;
+                        objeto.previous.next = null;
+                    }
+                } else {
+                    objeto.next.previous = objeto.previous;
+                    objeto.previous.next = objeto.next;
+                    objeto = null;
+                }
             }
         }
-    }
-
-    _find(code) {
-        let objeto = this._nextData(code, this._start);
-        //console.log(objeto);
-        if (objeto == null) {
-            return "Error";
-        } else if (objeto === this._tail) {
-            //console.log(objeto);
-            if (objeto.previous == this._start) {
-                this._tail = objeto.previous;
-                this._start.next = null;
-            } else {
-                this._tail = objeto.previous;
-                objeto.previous.next = null;
-            }
-        } else {
-            objeto.next.previous = objeto.previous;
-            objeto.previous.next = objeto.next;
-            objeto = null;
-        }
-    }
-    _nextData(code, start) {
-        while (start != null) {
-            if (start.dato == code) {
-                return start;
-            }
-            start = start.next;
-        }
-        return null;
     }
 }
